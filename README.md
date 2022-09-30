@@ -1,6 +1,11 @@
 # snapshat_like
 
-Snapshat Like project
+Snapshat Like project for [EFFICOM](https://www.efficom.fr)
+This is a school project !
+
+## Figma Project
+
+Maquettes disponible sur Figma : https://www.figma.com/file/n7THB40bglWhEjW9J9cMMC/SnapCloone
 
 ## Getting Started
 
