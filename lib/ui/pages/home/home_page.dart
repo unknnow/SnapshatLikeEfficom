@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:snapshat_like/ui/pages/home/profil/profil_page.dart';
 import 'package:snapshat_like/ui/pages/home/settings/settings_page.dart';
+import 'package:snapshat_like/ui/pages/home/camera/camera_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -14,7 +15,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = const [SettingsPage(),  ProfilPage(), SettingsPage()];
+  final List<Widget> _pages = const [SettingsPage(), CameraPage(), SettingsPage(), ProfilPage()];
   final List<MaterialColor> _colorsSelectBottomItems = const [Colors.blue,  Colors.yellow, Colors.green];
 
   @override
@@ -29,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
