@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:snapshat_like/ui/pages/home/profil/profil_page.dart';
 import 'package:snapshat_like/ui/pages/home/settings/settings_page.dart';
 import 'package:snapshat_like/ui/pages/home/camera/camera_page.dart';
-import 'RickAndMortyCharacters/rick_and_morty_characters.dart';
+import 'package:snapshat_like/ui/pages/home/meteo/meteo_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
