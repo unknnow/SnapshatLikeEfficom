@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:snapshat_like/ui/pages/home/profil/profil_page.dart';
 import 'package:snapshat_like/ui/pages/home/settings/settings_page.dart';
 import 'package:snapshat_like/ui/pages/home/camera/camera_page.dart';
-import 'RickAndMortyCharacters/rick_and_morty_characters.dart';
+import 'package:snapshat_like/ui/pages/home/map/map_page.dart';
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -16,7 +17,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = const [SettingsPage(), CameraPage(), RickAndMortyCharactersPage(), /*ProfilPage()*/];
+  final List<Widget> _pages = [const SettingsPage(), const CameraPage(), MapPage(), /*RickAndMortyCharactersPage(), ProfilPage()*/];
   final List<MaterialColor> _colorsSelectBottomItems = const [Colors.blue,  Colors.yellow, Colors.green];
 
   @override
@@ -26,11 +27,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: _pages[_selectedIndex],
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ),
+      ),*/
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
