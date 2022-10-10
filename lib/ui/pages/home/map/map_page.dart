@@ -5,9 +5,10 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert' as convert;
+import 'package:location/location.dart';
 
 import '../../../../data/models/characters_response.dart';
-//import 'package:snapchat_ui/theme/colors.dart';
+import 'package:snapshat_like/ui/pages/theme/colors.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -31,16 +32,21 @@ class _MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(50.6, 3.06),
+    target: LatLng(50.6282606, 3.0689255),
     zoom: 15.4746,
   );
 
   @override
   Widget build(BuildContext context) {
-    /*return Scaffold(
+    return Scaffold(
       floatingActionButton: getFooter(),
       body: getBody(),
-    );*/
+    );
+
+  }
+
+  @override
+  Widget getFooter() {
     return  FutureBuilder(
       future: _getCharacters(),
       builder: (BuildContext context, AsyncSnapshot<MeteoDeGulli?> snapshot){
@@ -131,94 +137,6 @@ class _MapPageState extends State<MapPage> {
                         SizedBox(
                           width: 5,
                         ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 70,
-                          width: 80,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: 3,
-                                child: Container(
-                                  width: 60,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle, color: Colors.white),
-                                  child: Center(
-                                    child: Container(
-                                      width: 45,
-                                      height: 45,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.grey.withOpacity(0.5)),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.account_circle,
-                                          color: Colors.grey,
-                                          size: 30,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 70,
-                          width: 70,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: 3,
-                                child: Container(
-                                  width: 60,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle, color: Colors.white),
-                                  child: Center(
-                                    child: Container(
-                                      width: 45,
-                                      height: 45,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.grey.withOpacity(0.5)),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.account_circle,
-                                          color: Colors.grey,
-                                          size: 30,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 5, bottom: 5, left: 12, right: 12),
-                                    child: Text(
-                                      "Friends",
-                                      style: TextStyle(
-                                          fontSize: 11, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
                       ],
                     ),
                   ],
