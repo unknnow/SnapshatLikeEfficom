@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:snapshat_like/ui/pages/home/descover/descover_page.dart';
 import 'package:snapshat_like/ui/pages/home/profil/profil_page.dart';
 import 'package:snapshat_like/ui/pages/home/settings/settings_page.dart';
