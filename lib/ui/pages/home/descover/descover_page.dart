@@ -130,21 +130,6 @@ class DescoverPage extends StatelessWidget {
                     BoxShadow(color: Colors.black.withOpacity(.2),offset: Offset(3, 19),blurRadius: 12,spreadRadius: 2)
                   ]
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  //Icon(Icons.chat_bubble,color: Colors.white,),
-                  Container(
-                    width: 75,
-                    height: 75,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white,width: 6)
-                    ),
-                  ),
-                  //Icon(Icons.chat_bubble,color: Colors.white,),
-                ],
-              ),
             ),
           )
         ],

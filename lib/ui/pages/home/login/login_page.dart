@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:snapshat_like/ui/pages/home/home_page.dart';
+import '../camera/camera_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -65,7 +67,11 @@ class LoginPage extends StatelessWidget {
                             )
                         ),
                         child: const Text('Se connecter'),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                            return const MyHomePage(title: 'Snap');
+                          }));
+                        },
                       )
                   ),
                 ],

@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:snapshat_like/ui/pages/home/profil/profil_page.dart';
 //import 'package:flutter_icons/flutter_icons.dart';
 
 
@@ -125,10 +126,24 @@ class _CameraPageState extends State<CameraPage> {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.black.withOpacity(0.3)),
-                    child: Icon(
-                      Icons.account_circle,
-                      color: Colors.yellow,
-                      size: 23,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: IconButton(
+                            padding: EdgeInsets.all(0.0),
+                            icon: const Icon(Icons.account_circle, size: 23),
+                            color: Colors.yellow,
+                            onPressed: (
+                                ) {
+                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                                return ProfilePage();
+                              }));
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -198,32 +213,6 @@ class _CameraPageState extends State<CameraPage> {
               )
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: null,
-                icon: Icon(
-                  Icons.badge,
-                  color: Colors.white,
-                  size: 28,
-                ),
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(width: 7, color: Colors.white)),
-              ),
-              SizedBox(
-                width: 15,
-              ),
-            ],
-          )
         ],
       ),
     );

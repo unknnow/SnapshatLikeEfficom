@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert' as convert;
 import 'package:location/location.dart';
-
-import '../../../../data/models/characters_response.dart';
+import '../../../../data/models/meteo_response.dart';
 import 'package:snapshat_like/ui/pages/theme/colors.dart';
+
+import '../profil/profil_page.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -18,13 +19,13 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  Future<MeteoDeGulli?> _getCharacters() async {
+  Future<MeteoResponse?> _getCharacters() async {
     var url = Uri.parse('https://www.prevision-meteo.ch/services/json/lat=50.6lng=3.06');
 
     var request = await http.get(url);
     if(request.statusCode == 200){
       Map<String, dynamic> parsedObject = convert.jsonDecode(request.body) as Map<String, dynamic>;
-      return MeteoDeGulli.fromJson(parsedObject);
+      return MeteoResponse.fromJson(parsedObject);
     } else {
       return null;
     }
@@ -49,11 +50,11 @@ class _MapPageState extends State<MapPage> {
   Widget getFooter() {
     return  FutureBuilder(
       future: _getCharacters(),
-      builder: (BuildContext context, AsyncSnapshot<MeteoDeGulli?> snapshot){
+      builder: (BuildContext context, AsyncSnapshot<MeteoResponse?> snapshot){
         if(snapshot.connectionState == ConnectionState.done) {
           if(snapshot.hasData) {
             if (snapshot.data != null) {
-              MeteoDeGulli meteo = snapshot.data!;
+              MeteoResponse meteo = snapshot.data!;
               /*return Text(meteo.currentCondition!.condition!);*/
               return Padding(
                 padding: const EdgeInsets.only(left: 30, top: 60),
@@ -71,10 +72,24 @@ class _MapPageState extends State<MapPage> {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.black.withOpacity(0.3)),
-                              child: Icon(
-                                Icons.account_circle,
-                                color: Colors.yellow,
-                                size: 23,
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 40,
+                                    height: 40,
+                                    child: IconButton(
+                                      padding: EdgeInsets.all(0.0),
+                                      icon: const Icon(Icons.account_circle, size: 23),
+                                      color: Colors.yellow,
+                                      onPressed: (
+                                          ) {
+                                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                                          return ProfilePage();
+                                        }));
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(

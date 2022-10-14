@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:snapshat_like/ui/pages/home/chat/chat_page.dart';
+import 'package:snapshat_like/ui/pages/home/conversation/message_page.dart';
 
 import 'package:snapshat_like/ui/pages/home/descover/descover_page.dart';
 import 'package:snapshat_like/ui/pages/home/profil/profil_page.dart';
@@ -18,10 +20,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   final List<Widget> _pages = const [
-    SettingsPage(), CameraPage(), MapPage(), DescoverPage(), /*RickAndMortyCharactersPage(), ProfilPage()*/
+    ChatPage(), CameraPage(), MapPage(), DescoverPage(),
   ];
   final List<MaterialColor> _colorsSelectBottomItems = const [
     Colors.blue,  Colors.yellow, Colors.green, Colors.red
