@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_maps_flutter: ^2.2.1
-  location: ^4.2.0
+  location: ^4.4.0
   camera: ^0.8.1+7
   video_player: ^2.1.14
   path_provider: ^2.0.2
@@ -45,6 +45,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.10.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "images/snap2.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -76,7 +82,6 @@ flutter:
     - images/person1.jpg
     - images/person2.jpg
     - images/person3.jpg
-    - images/screen.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

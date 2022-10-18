@@ -7,9 +7,22 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert' as convert;
 import 'package:location/location.dart';
 import '../../../../data/models/meteo_response.dart';
-import 'package:snapshat_like/ui/pages/theme/colors.dart';
-
 import '../profil/profil_page.dart';
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Location',
+      theme: ThemeData(
+        primarySwatch: Colors.amber,
+      ),
+      home: const MapPage(),
+    );
+  }
+}
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -19,9 +32,12 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  Location location = new Location();
+
+
+
   Future<MeteoResponse?> _getCharacters() async {
     var url = Uri.parse('https://www.prevision-meteo.ch/services/json/lat=50.6lng=3.06');
-
     var request = await http.get(url);
     if(request.statusCode == 200){
       Map<String, dynamic> parsedObject = convert.jsonDecode(request.body) as Map<String, dynamic>;
@@ -33,6 +49,8 @@ class _MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
+    /*target: LatLng(location.latitude, location.longitude),
+    zoom: 15.4746,*/
     target: LatLng(50.6282606, 3.0689255),
     zoom: 15.4746,
   );
@@ -172,13 +190,16 @@ class _MapPageState extends State<MapPage> {
 
 
   Widget getBody() {
+    print(Location());
     return GoogleMap(
       mapType: MapType.normal,
-      myLocationButtonEnabled: false,
+      myLocationEnabled: true,
+      myLocationButtonEnabled: true,
       initialCameraPosition: _kGooglePlex,
       onMapCreated: (GoogleMapController controller) {
         _controller.complete(controller);
       },
     );
+
   }
 }

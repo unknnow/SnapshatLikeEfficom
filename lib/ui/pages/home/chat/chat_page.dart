@@ -49,19 +49,17 @@ class _ChatPageState extends State<ChatPage> {
                                   )
                                 ],
                               ),
-                              Icon(Icons.cloud_outlined, color: Colors.white, size: 31)
                             ],
                           ),
                         ),
                         Container(
-                          width: size.width,
-                          height: size.height,
+                          height: MediaQuery.of(context).size.height,
+                          width: double.infinity,
                           decoration: BoxDecoration(
+                              color: Colors.white,
                               borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10)),
-                              color: Colors.white),
-                          child: SingleChildScrollView(
+                                  topLeft: Radius.circular(14),
+                                  topRight: Radius.circular(14))),
                             child: Column(
                               children: [
                                 Column(
@@ -206,7 +204,7 @@ class _ChatPageState extends State<ChatPage> {
                                     })),
                               ],
                             ),
-                          ),
+
                         )
                   ],
                 ),
