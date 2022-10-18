@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:snapshat_like/ui/pages/home/profil/profil_page.dart';
-//import 'package:flutter_icons/flutter_icons.dart';
+import 'package:path/path.dart' show join;
 
 
 class CameraPage extends StatefulWidget {
@@ -22,15 +25,22 @@ class _CameraPageState extends State<CameraPage> {
     super.initState();
     _setUpCamera();
   }
-
+  int _selectedCameraIndex = -1;
   void _setUpCamera() async {
     try {
       // initialize cameras.
       _cameras = await availableCameras();
+      if(_selectedCameraIndex > -1){
+        if(_selectedCameraIndex == 0){
+          _selectedCameraIndex = 1;
+        }else{_selectedCameraIndex = 0;}
+      }else{
+        _selectedCameraIndex = 0;
+      }
       // initialize camera controllers.
       // Current bug for high / medium with samsung devices.
       _controller = CameraController(
-        _cameras[0],
+        _cameras[_selectedCameraIndex],
         ResolutionPreset.medium,
       );
 
@@ -43,6 +53,31 @@ class _CameraPageState extends State<CameraPage> {
       _isReady = true;
     });
   }
+
+  Future<void> _takePhoto() async{
+    try{
+      await _setUpCamera;
+      final image = await _controller.takePicture();
+      if (!mounted) return;
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => DisplayPictureScreen(
+            // Pass the automatically generated path to
+            // the DisplayPictureScreen widget.
+            imagePath: image.path,
+          ),
+        ),
+      );
+      var pathImage = image.path;
+      print(image.path);
+      /*String pathImage = join((await getTemporaryDirectory()).path,
+          '${DateTime.now().millisecondsSinceEpoch}.jpg');
+      await _controller.takePicture(pathImage);
+      print(pathImage);*/
+    }catch(e){
+      print(e);
+    }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +208,7 @@ class _CameraPageState extends State<CameraPage> {
                         shape: BoxShape.circle,
                         color: Colors.black.withOpacity(0.3)),
                     child: Icon(
-                      Icons.person_add,
+                      Icons.person_add_alt,
                       color: Colors.white,
                       size: 20,
                     ),
@@ -186,16 +221,25 @@ class _CameraPageState extends State<CameraPage> {
                         borderRadius: BorderRadius.circular(50),
                         color: Colors.black.withOpacity(0.3)),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(0.0),
                       child: Column(
                         children: [
-                          Icon(
-                            Icons.autorenew,
-                            color: Colors.white,
-                            size: 25,
-                          ),
-                          SizedBox(
-                            height: 18,
+                          Container(
+                            width: 48,
+                            height: 48,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  height: 22,
+                                  child: IconButton(
+                                    padding: EdgeInsets.all(0.0),
+                                    icon: const Icon(Icons.refresh,
+                                      color: Colors.white, size: 25,),
+                                    onPressed: _setUpCamera,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Icon(
                             Icons.bolt,
@@ -203,7 +247,7 @@ class _CameraPageState extends State<CameraPage> {
                             size: 25,
                           ),
                           SizedBox(
-                            height: 18,
+                            height: 10,
                           ),
                         ],
                       ),
@@ -213,8 +257,45 @@ class _CameraPageState extends State<CameraPage> {
               )
             ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: 80,
+                    height: 80,
+                    child: IconButton(
+                      padding: EdgeInsets.all(0.0),
+                      icon: const Icon(Icons.circle_outlined, size: 80),
+                      color: Colors.white,
+                      onPressed: _takePhoto
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
+    );
+  }
+
+}
+
+class DisplayPictureScreen extends StatelessWidget {
+  final String imagePath;
+
+  const DisplayPictureScreen({super.key, required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Display the Picture')),
+      // The image is stored as a file on the device. Use the `Image.file`
+      // constructor with the given path to display the image.
+      body: Image.file(File(imagePath)),
+
     );
   }
 }
