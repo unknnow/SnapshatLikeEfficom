@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:snapshat_like/ui/pages/home/chat/chat_page.dart';
 import 'package:snapshat_like/ui/pages/home/conversation/message_page.dart';
-
 import 'package:snapshat_like/ui/pages/home/descover/descover_page.dart';
 import 'package:snapshat_like/ui/pages/home/profil/profil_page.dart';
 import 'package:snapshat_like/ui/pages/home/settings/settings_page.dart';
 import 'package:snapshat_like/ui/pages/home/camera/camera_page.dart';
 import 'package:snapshat_like/ui/pages/home/map/map_page.dart';
 import 'package:snapshat_like/ui/pages/home/presentation/presentation_page.dart';
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -22,7 +20,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 1;
 
-  final List<Widget> _pages = const [
+  final List<Widget> _pages =  [
     ChatPage(), CameraPage(), MapPage(), DescoverPage(),
   ];
   final List<MaterialColor> _colorsSelectBottomItems = const [

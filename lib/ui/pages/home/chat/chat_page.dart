@@ -23,19 +23,26 @@ class _ChatPageState extends State<ChatPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                        SizedBox(
-                          height: 24,
-                        ),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Row(
-                                children: const <Widget>[
-                                  CircleAvatar(
-                                    backgroundImage: AssetImage('images/user.png'),
-                                  ),
+                                //children:
+                                //const <Widget>[
+                                children: <Widget>[
+                                  IconButton(
+                                    padding: EdgeInsets.all(0.0),
+                                    iconSize: 10,
+                                    icon: Image.asset('images/user.png'),
+                                    onPressed: (
+                                        ) {
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                                      return ProfilePage();
+                                    }));
+                                  },
+                                ),
                                   SizedBox(
                                     width: 5,
                                   ),
@@ -43,8 +50,7 @@ class _ChatPageState extends State<ChatPage> {
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
-                                    'Chat',
+                                  Text('Chat',
                                     style: TextStyle(color: Colors.white, fontSize: 27),
                                   )
                                 ],
@@ -67,7 +73,7 @@ class _ChatPageState extends State<ChatPage> {
                                       return Column(
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.only(right: 20, left: 20),
+                                            padding: const EdgeInsets.only(right: 20, left: 20, top: 10),
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [

@@ -1,16 +1,21 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert' as convert;
 import 'package:location/location.dart';
+import 'package:snapshat_like/ui/pages/home/map/location_service.dart';
 import '../../../../data/models/meteo_response.dart';
 import '../profil/profil_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -32,13 +37,15 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  Location location = new Location();
 
-
-
-  Future<MeteoResponse?> _getCharacters() async {
-    var url = Uri.parse('https://www.prevision-meteo.ch/services/json/lat=50.6lng=3.06');
+  Future<MeteoResponse?> _getCharacters() async {//api
+    var url = Uri.parse('https://www.prevision-meteo.ch/services/json/lat=${lat}lng=${long}');
     var request = await http.get(url);
+    print('La Latitude est de ${lat}');
+    print('La Latitude est de ${long}');
+    print('La Latitude est de ${doublat}');
+    print('La Latitude est de ${doublong}');
+
     if(request.statusCode == 200){
       Map<String, dynamic> parsedObject = convert.jsonDecode(request.body) as Map<String, dynamic>;
       return MeteoResponse.fromJson(parsedObject);
@@ -48,12 +55,41 @@ class _MapPageState extends State<MapPage> {
   }
   Completer<GoogleMapController> _controller = Completer();
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    /*target: LatLng(location.latitude, location.longitude),
+  String? lat,long;
+  double doublat =50.15624, doublong=3.0689255;
+  late CameraPosition _kGooglePlex;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getLocation();
+  }
+
+  void getLocation() async{
+    final service = LocationService();
+    final locationData = await service.getLocation();
+
+    if(locationData != null){
+      setState(() {
+        lat = locationData.latitude!.toStringAsFixed(7);
+        long = locationData.longitude!.toStringAsFixed(7);
+        doublat = locationData.latitude!.toDouble();
+        doublong = locationData.longitude!.toDouble();
+        _kGooglePlex = CameraPosition(
+          /*target: LatLng(location.latitude, location.longitude),
     zoom: 15.4746,*/
-    target: LatLng(50.6282606, 3.0689255),
-    zoom: 15.4746,
-  );
+          //target: LatLng(50.15624 , 3.0689255),
+          target: LatLng(doublat, doublong),
+          zoom: 15.4746,
+        );
+        //var doublelat = double.parse(locationData.latitude!.toStringAsFixed(7));
+        //var doublelong = double.parse(locationData.longitude!.toStringAsFixed(7));
+      });
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +97,7 @@ class _MapPageState extends State<MapPage> {
       floatingActionButton: getFooter(),
       body: getBody(),
     );
-
   }
-
   @override
   Widget getFooter() {
     return  FutureBuilder(
@@ -73,7 +107,6 @@ class _MapPageState extends State<MapPage> {
           if(snapshot.hasData) {
             if (snapshot.data != null) {
               MeteoResponse meteo = snapshot.data!;
-              /*return Text(meteo.currentCondition!.condition!);*/
               return Padding(
                 padding: const EdgeInsets.only(left: 30, top: 60),
                 child: Column(
@@ -85,7 +118,7 @@ class _MapPageState extends State<MapPage> {
                         Row(
                           children: [
                             Container(
-                              width: 40,
+                              width: 50,
                               height: 40,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
@@ -93,12 +126,12 @@ class _MapPageState extends State<MapPage> {
                               child: Row(
                                 children: [
                                   SizedBox(
-                                    width: 40,
+                                    width: 50,
                                     height: 40,
                                     child: IconButton(
-                                      padding: EdgeInsets.all(0.0),
-                                      icon: const Icon(Icons.account_circle, size: 23),
-                                      color: Colors.yellow,
+                                      padding: EdgeInsets.all(0),
+                                      iconSize: 10,
+                                      icon: Image.asset('images/user.png'),
                                       onPressed: (
                                           ) {
                                         Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
@@ -127,7 +160,6 @@ class _MapPageState extends State<MapPage> {
                             )
                           ],
                         ),
-
                         Container(//Container API
                           decoration: BoxDecoration(boxShadow: [
                             BoxShadow(
@@ -170,6 +202,39 @@ class _MapPageState extends State<MapPage> {
                         SizedBox(
                           width: 5,
                         ),
+                    ],
+                  ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              spreadRadius: 10,
+                              blurRadius: 40,
+                            ),
+                          ], shape: BoxShape.circle, color: Colors.white),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 40,
+                                  height: 40,
+                                  child: IconButton(
+                                    icon: const Icon(Icons.near_me_outlined, size: 25,),
+                                    onPressed: (
+                                        ) {
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                                        return ProfilePage();
+                                      }));
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                        ),
                       ],
                     ),
                   ],
@@ -188,9 +253,7 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-
   Widget getBody() {
-    print(Location());
     return GoogleMap(
       mapType: MapType.normal,
       myLocationEnabled: true,
@@ -200,6 +263,8 @@ class _MapPageState extends State<MapPage> {
         _controller.complete(controller);
       },
     );
-
   }
+
+
+
 }

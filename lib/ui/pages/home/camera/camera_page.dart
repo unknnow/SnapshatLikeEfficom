@@ -156,20 +156,20 @@ class _CameraPageState extends State<CameraPage> {
               Row(
                 children: [
                   Container(
-                    width: 40,
+                    width: 50,
                     height: 40,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.black.withOpacity(0.3)),
+                        color: Colors.black.withOpacity(0.8)),
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 40,
+                          width: 50,
                           height: 40,
                           child: IconButton(
-                            padding: EdgeInsets.all(0.0),
-                            icon: const Icon(Icons.account_circle, size: 23),
-                            color: Colors.yellow,
+                            padding: EdgeInsets.all(0),
+                            iconSize: 10,
+                            icon: Image.asset('images/user.png'),
                             onPressed: (
                                 ) {
                               Navigator.push(context, MaterialPageRoute(builder: (BuildContext){

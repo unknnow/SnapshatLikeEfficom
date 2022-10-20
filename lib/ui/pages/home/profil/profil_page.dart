@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:snapshat_like/ui/pages/home/contact/contact_page.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Padding(
               padding: EdgeInsets.only(top: 40.0),
               child: CircleAvatar(
-                backgroundImage: NetworkImage('https://w7.pngwing.com/pngs/140/571/png-transparent-snapchat-youtube-android-the-hobbit-snapchat-face-head-cartoon.png'),
+                backgroundImage: AssetImage('images/user.png'),
                 maxRadius: 50,
                 backgroundColor: Color.fromARGB(100, 22, 44, 33),
 
@@ -97,37 +98,43 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
 
             Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 35),
-              height: 60,
-              width: 20,
-              color: Colors.transparent,
-              child: Container(
-                  decoration:  BoxDecoration(
-                      image: DecorationImage
-                        (image: NetworkImage('https://cdn3.iconfinder.com/data/icons/network-and-communications-10/32/network_contact_list_contact_log_contact_book-512.png'),
-                          alignment: Alignment.centerLeft
-                      ),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 10.0,
-                          spreadRadius: 5.0,
-                          offset: Offset(
-                            5.0,
-                            5.0,
+                margin: const EdgeInsets.fromLTRB(0, 0, 0, 35),
+                height: 60,
+                width: 20,
+                color: Colors.transparent,
+                child: InkWell(
+                  child: Container(
+                      decoration:  BoxDecoration(
+                          image: DecorationImage
+                            (image: NetworkImage('https://cdn3.iconfinder.com/data/icons/network-and-communications-10/32/network_contact_list_contact_log_contact_book-512.png'),
+                              alignment: Alignment.centerLeft
                           ),
-                        )
-                      ],
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  child: new Center(
-                    child: new Text("Liste de contacts",
-                      style: TextStyle(fontSize: 17, color: Colors.black),
-                      textAlign: TextAlign.center,),
-                  )),
-
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 10.0,
+                              spreadRadius: 5.0,
+                              offset: Offset(
+                                5.0,
+                                5.0,
+                              ),
+                            )
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                      child: new Center(
+                        child: new Text("Liste de contacts",
+                          style: TextStyle(fontSize: 17, color: Colors.black),
+                          textAlign: TextAlign.center,),
+                      )
+                  ),
+                  onTap:(){
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                      return ContactPage();
+                    }));
+                  },
+                )
             ),
-
           ],
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../profil/profil_page.dart';
+
 class DescoverPage extends StatelessWidget {
   const DescoverPage({Key? key}) : super(key: key);
   @override
@@ -21,9 +23,17 @@ class DescoverPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Row(
-                          children: const <Widget>[
-                            CircleAvatar(
-                              backgroundImage: AssetImage('images/user.png'),
+                          children:  <Widget>[
+                            IconButton(
+                              padding: EdgeInsets.all(0.0),
+                              iconSize: 10,
+                              icon: Image.asset('images/user.png'),
+                              onPressed: (
+                                  ) {
+                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                                  return ProfilePage();
+                                }));
+                              },
                             ),
                             SizedBox(
                               width: 5,
@@ -66,11 +76,10 @@ class DescoverPage extends StatelessWidget {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: <Widget>[
-                              story('Hugo', 'images/user.png'),
+                              story('Hugo', 'images/person1.jpg'),
                               story('Julien', 'images/person1.jpg'),
                               story('Pierrick', 'images/person2.jpg'),
                               story('Corentin', 'images/person3.jpg'),
-                              story('Yassine', 'images/person1.jpg'),
                               story('Ambroise', 'images/user.png'),
                             ],
                           ),
