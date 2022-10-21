@@ -8,6 +8,7 @@ This is a school project !
 Maquettes disponible sur Figma : https://www.figma.com/file/n7THB40bglWhEjW9J9cMMC/SnapCloone
 
 ## Getting Started
+
 il est preferable d'utilisé un vrais téléphone, j'ai eu des probleme avec l'emulator pour certaine action.
 Tout les boutons son normalement cliquable :)
 
