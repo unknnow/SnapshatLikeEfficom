@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:snapshat_like/ui/pages/home/contact/contact_page.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -12,6 +11,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
 
       body:
@@ -19,13 +19,58 @@ class _ProfilePageState extends State<ProfilePage> {
         child: ListView(
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 40.0),
-              child: CircleAvatar(
-                backgroundImage: AssetImage('images/user.png'),
-                maxRadius: 50,
-                backgroundColor: Color.fromARGB(100, 22, 44, 33),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              color: Color(0xFFa05dce),
+              child:
 
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    //children:
+                    //const <Widget>[
+                    children: <Widget>[
+                      IconButton(
+                        padding: EdgeInsets.all(0.0),
+                        iconSize: 10,
+                        icon: Icon(Icons.arrow_back_ios),
+                        onPressed: (
+                            ) {
+                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                            return ChatPage();
+                          }));
+                        },
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text('Profile',
+                        style: TextStyle(color: Colors.white, fontSize: 22),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: Color(0xFFa05dce),
+              child: Container(
+
+                padding: EdgeInsets.only(top: 40.0),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(14),
+                        topRight: Radius.circular(14)
+                    )
+                ),
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('images/user.png'),
+                  maxRadius: 50,
+                  backgroundColor: Color.fromARGB(100, 22, 44, 33),
+
+                ),
               ),
             ),
             Padding(
@@ -98,43 +143,37 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
 
             Container(
-                margin: const EdgeInsets.fromLTRB(0, 0, 0, 35),
-                height: 60,
-                width: 20,
-                color: Colors.transparent,
-                child: InkWell(
-                  child: Container(
-                      decoration:  BoxDecoration(
-                          image: DecorationImage
-                            (image: NetworkImage('https://cdn3.iconfinder.com/data/icons/network-and-communications-10/32/network_contact_list_contact_log_contact_book-512.png'),
-                              alignment: Alignment.centerLeft
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 35),
+              height: 60,
+              width: 20,
+              color: Colors.transparent,
+              child: Container(
+                  decoration:  BoxDecoration(
+                      image: DecorationImage
+                        (image: NetworkImage('https://cdn3.iconfinder.com/data/icons/network-and-communications-10/32/network_contact_list_contact_log_contact_book-512.png'),
+                          alignment: Alignment.centerLeft
+                      ),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 10.0,
+                          spreadRadius: 5.0,
+                          offset: Offset(
+                            5.0,
+                            5.0,
                           ),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 10.0,
-                              spreadRadius: 5.0,
-                              offset: Offset(
-                                5.0,
-                                5.0,
-                              ),
-                            )
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                      child: new Center(
-                        child: new Text("Liste de contacts",
-                          style: TextStyle(fontSize: 17, color: Colors.black),
-                          textAlign: TextAlign.center,),
-                      )
-                  ),
-                  onTap:(){
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
-                      return ContactPage();
-                    }));
-                  },
-                )
+                        )
+                      ],
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                  child: new Center(
+                    child: new Text("Liste de contacts",
+                      style: TextStyle(fontSize: 17, color: Colors.black),
+                      textAlign: TextAlign.center,),
+                  )),
+
             ),
+
           ],
         ),
       ),
