@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:snapshat_like/data/chat_json.dart';
+import 'package:snapshat_like/ui/pages/home/contact/recherche_page.dart';
 import 'package:snapshat_like/ui/pages/home/conversation/message_page.dart';
-import 'package:snapshat_like/ui/pages/home/home_page.dart';
+//import 'package:snapshat_like/ui/pages/home/home_page.dart';
 import '../profil/profil_page.dart';
 
 class ChatPage extends StatefulWidget {
@@ -46,7 +47,16 @@ class _ChatPageState extends State<ChatPage> {
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  Icon(Icons.search, color: Colors.white, size: 31),
+                                  IconButton(
+                                    padding: EdgeInsets.all(0.0),
+                                    icon: Icon(Icons.search, color: Colors.white, size: 31),
+                                    onPressed: (
+                                        ) {
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                                        return RecherchePage();
+                                      }));
+                                    },
+                                  ),
                                   SizedBox(
                                     width: 5,
                                   ),
@@ -59,7 +69,7 @@ class _ChatPageState extends State<ChatPage> {
                           ),
                         ),
                         Container(
-                          height: MediaQuery.of(context).size.height,
+                          height: MediaQuery.of(context).size.height+41,
                           width: double.infinity,
                           decoration: BoxDecoration(
                               color: Colors.white,

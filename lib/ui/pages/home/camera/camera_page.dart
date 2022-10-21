@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:snapshat_like/ui/pages/home/contact/recherche_page.dart';
 import 'package:snapshat_like/ui/pages/home/profil/profil_page.dart';
 import 'package:path/path.dart' show join;
 
@@ -156,18 +157,15 @@ class _CameraPageState extends State<CameraPage> {
               Row(
                 children: [
                   Container(
-                    width: 50,
-                    height: 40,
+
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.black.withOpacity(0.8)),
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 50,
-                          height: 40,
                           child: IconButton(
-                            padding: EdgeInsets.all(0),
+                            padding: EdgeInsets.all(0.0),
                             iconSize: 10,
                             icon: Image.asset('images/user.png'),
                             onPressed: (
@@ -185,15 +183,20 @@ class _CameraPageState extends State<CameraPage> {
                     width: 10,
                   ),
                   Container(
-                    width: 40,
-                    height: 40,
+                    width: 45,
+                    height: 45,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.black.withOpacity(0.3)),
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.white,
-                      size: 23,
+                    child: IconButton(
+                      padding: EdgeInsets.all(0.0),
+                      icon: Icon(Icons.search, color: Colors.white, size: 31),
+                      onPressed: (
+                          ) {
+                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                          return RecherchePage();
+                        }));
+                      },
                     ),
                   )
                 ],
@@ -201,18 +204,6 @@ class _CameraPageState extends State<CameraPage> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black.withOpacity(0.3)),
-                    child: Icon(
-                      Icons.person_add_alt,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
                   SizedBox(
                     width: 10,
                   ),

@@ -11,13 +11,12 @@ class MessagePage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Container(
-            child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  SizedBox(
-                    height: 24,
-                  ),
-                  Padding(
+
+                  Container(
+                    /*decoration: BoxDecoration(
+                      color: Colors.purple,),*/
                     padding: const EdgeInsets.all(12.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,7 +57,7 @@ class MessagePage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height,
+                    height: MediaQuery.of(context).size.height-139,
                     width: double.infinity,
                     padding: EdgeInsets.only(top: 12, left: 21),
                     decoration: BoxDecoration(
@@ -67,12 +66,10 @@ class MessagePage extends StatelessWidget {
                             topLeft: Radius.circular(14),
                             topRight: Radius.circular(14))),
                     child: SingleChildScrollView(
-                    //margin: const EdgeInsets.symmetric(vertical: 10.0),
-                    // ignore: unnecessary_new
                     child: Column(
                         children: [
                     Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20,0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -92,12 +89,12 @@ class MessagePage extends StatelessWidget {
                               child: const Text("Hello, ça va toi ? "),
                             )
                           ],
-                        )
+                        ),
                       ],
                     ),
-                  ),
+                    ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 15),
                         child:
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,7 +115,7 @@ class MessagePage extends StatelessWidget {
                                   child: const Text("Ca va bien moi"),
                                 )
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -127,10 +124,17 @@ class MessagePage extends StatelessWidget {
               ),
             ),
 
-                  //Spacer(),
+                  Spacer(),
+
+                  Container(decoration: BoxDecoration(
+                    color: Colors.white,),
+                  ),
                   Container(
-                    margin: const EdgeInsets.all(15.0),
-                    height: 61,
+                    decoration: BoxDecoration(
+                      color: Colors.white,),
+                    padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                    //margin: const EdgeInsets.all(7.0),
+                    height: 75,
                     child: Row(
                       children: [
                         Expanded(
@@ -195,21 +199,21 @@ class MessagePage extends StatelessWidget {
                   ),
 
 
-                  Align(
+                  /*Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       margin: EdgeInsets.only(bottom: 21),
                       decoration: BoxDecoration(
-                          color: Colors.transparent,
+                          color: Colors.white,
                           boxShadow: [
                             BoxShadow(color: Colors.black.withOpacity(.2),offset: Offset(3, 19),blurRadius: 12,spreadRadius: 2)
                           ]
                       ),
                     ),
-                  ),
+                  ),*/
         ],
       ),
-    ),
+
     ),
     ],
       ),

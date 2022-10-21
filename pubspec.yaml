@@ -29,7 +29,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.5
+
+
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,7 +42,16 @@ dependencies:
   camera: ^0.8.1+7
   video_player: ^2.1.14
   path_provider: ^2.0.2
-
+  anim_search_bar: ^2.0.2
+  dio: ^4.0.6
+  file_picker: ^4.5.1
+  flutter_pdfview: ^1.2.2
+  path: ^1.8.0
+  permission_handler: ^9.2.0
+  http: ^0.13.5
+  url_launcher: ^6.1.6
+  open_file: 3.2.1
+  ffi: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -64,8 +75,15 @@ flutter_icons:
 
 # The following section is specific to Flutter packages.
 flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.crazecoder.openfile
+        pluginClass: OpenFilePlugin
+      ios:
+        pluginClass: OpenFilePlugin
 
-  # The following line ensures that the Material Icons font is
+  # The folloing line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true

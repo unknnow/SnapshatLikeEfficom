@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snapshat_like/ui/pages/home/contact/recherche_page.dart';
 
 import '../profil/profil_page.dart';
 
@@ -14,9 +15,7 @@ class DescoverPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  SizedBox(
-                    height: 24,
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Row(
@@ -38,7 +37,17 @@ class DescoverPage extends StatelessWidget {
                             SizedBox(
                               width: 5,
                             ),
-                            Icon(Icons.search, color: Colors.white, size: 31),
+                            IconButton(
+                              padding: EdgeInsets.all(0.0),
+                              icon: Icon(Icons.search, color: Colors.white, size: 31),
+                              onPressed: (
+                                  ) {
+                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                                  return RecherchePage();
+                                }));
+                              },
+                            ),
+
                             SizedBox(
                               width: 5,
                             ),
@@ -140,18 +149,7 @@ class DescoverPage extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  //Icon(Icons.chat_bubble,color: Colors.white,),
-                  Container(
-                    width: 75,
-                    height: 75,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white,width: 6)
-                    ),
-                  ),
-                  //Icon(Icons.chat_bubble,color: Colors.white,),
-                ],
+
               ),
             ),
           )

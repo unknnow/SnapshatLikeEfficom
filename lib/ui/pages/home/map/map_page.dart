@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert' as convert;
 import 'package:location/location.dart';
+import 'package:snapshat_like/ui/pages/home/contact/recherche_page.dart';
 import 'package:snapshat_like/ui/pages/home/map/location_service.dart';
 import '../../../../data/models/meteo_response.dart';
 import '../profil/profil_page.dart';
@@ -69,7 +70,6 @@ class _MapPageState extends State<MapPage> {
   void getLocation() async{
     final service = LocationService();
     final locationData = await service.getLocation();
-
     if(locationData != null){
       setState(() {
         lat = locationData.latitude!.toStringAsFixed(7);
@@ -77,14 +77,11 @@ class _MapPageState extends State<MapPage> {
         doublat = locationData.latitude!.toDouble();
         doublong = locationData.longitude!.toDouble();
         _kGooglePlex = CameraPosition(
-          /*target: LatLng(location.latitude, location.longitude),
-    zoom: 15.4746,*/
-          //target: LatLng(50.15624 , 3.0689255),
+
           target: LatLng(doublat, doublong),
           zoom: 15.4746,
         );
-        //var doublelat = double.parse(locationData.latitude!.toStringAsFixed(7));
-        //var doublelong = double.parse(locationData.longitude!.toStringAsFixed(7));
+
       });
     }
   }
@@ -118,16 +115,12 @@ class _MapPageState extends State<MapPage> {
                         Row(
                           children: [
                             Container(
-                              width: 50,
-                              height: 40,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.black.withOpacity(0.3)),
+                                  color: Colors.black.withOpacity(0.8)),
                               child: Row(
                                 children: [
                                   SizedBox(
-                                    width: 50,
-                                    height: 40,
                                     child: IconButton(
                                       padding: EdgeInsets.all(0),
                                       iconSize: 10,
@@ -147,15 +140,20 @@ class _MapPageState extends State<MapPage> {
                               width: 10,
                             ),
                             Container(
-                              width: 40,
-                              height: 40,
+                              width: 45,
+                              height: 45,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.black.withOpacity(0.3)),
-                              child: Icon(
-                                Icons.search,
-                                color: Colors.white,
-                                size: 23,
+                              child: IconButton(
+                                padding: EdgeInsets.all(0.0),
+                                icon: Icon(Icons.search, color: Colors.white, size: 31),
+                                onPressed: (
+                                    ) {
+                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext){
+                                    return RecherchePage();
+                                  }));
+                                },
                               ),
                             )
                           ],
@@ -204,7 +202,7 @@ class _MapPageState extends State<MapPage> {
                         ),
                     ],
                   ),
-                    Row(
+                    /*Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
@@ -236,7 +234,7 @@ class _MapPageState extends State<MapPage> {
                             ),
                         ),
                       ],
-                    ),
+                    ),*/
                   ],
                 ),
               );
