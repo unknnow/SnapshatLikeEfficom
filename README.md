@@ -9,8 +9,8 @@ Maquettes disponible sur Figma : https://www.figma.com/file/n7THB40bglWhEjW9J9cM
 
 ## Getting Started
 
-il est preferable d'utilisé un vrais téléphone, j'ai eu des probleme avec l'emulator pour certaine action.
-Tout les boutons son normalement cliquable :)
+il est preferable d'utilisé un vrais téléphone, j'ai eu des problemes avec l'emulator pour certaines actions.
+Tous les boutons son normalement cliquable :)
 
 
 
